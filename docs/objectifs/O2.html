@@ -485,23 +485,7 @@
   .theme-toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,0.04); }
 </style>
 
-<script>
-  (function(){
-    const toggle = document.getElementById('themeToggle');
-    if(!toggle) return;
-    const body = document.body;
-    const current = localStorage.getItem('site-theme') || 'dark';
-    if(current === 'light') body.classList.add('theme-light');
-    const updateButton = () => { toggle.textContent = body.classList.contains('theme-light') ? '🌞' : '🌙'; };
-    updateButton();
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('theme-light');
-      const mode = body.classList.contains('theme-light') ? 'light' : 'dark';
-      localStorage.setItem('site-theme', mode);
-      updateButton();
-    });
-  })();
-</script>
+<!-- Theme toggle logic lives in templates/layout.html to avoid duplication -->
 
   <main class="container">
     <h1>O2 - Identifier les éléments influents du développement d'un produit</h1>
