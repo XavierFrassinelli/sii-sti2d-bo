@@ -186,28 +186,30 @@
       gap: 1rem;
       align-items: center;
     }
-    .header-logos img.logo {
+    .header-logos .logo {
       height: 60px;
       width: auto;
+      max-width: 100px;
       opacity: 0.9;
       transition: all 0.3s ease;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+      cursor: pointer;
     }
-    .header-logos img.logo:hover {
+    .header-logos .logo:hover {
       opacity: 1;
-      transform: scale(1.1) rotate(2deg);
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
     }
-    .header-logos img.logo-1 {
+    .header-logos .logo-1 {
       transform: translateY(-8px) rotate(-5deg);
     }
-    .header-logos img.logo-2 {
+    .header-logos .logo-2 {
       transform: translateY(5px) rotate(3deg);
     }
-    .header-logos img.logo-3 {
+    .header-logos .logo-3 {
       transform: translateY(-3px) rotate(-2deg);
     }
-    .header-logos img.logo-4 {
+    .header-logos .logo-4 {
       transform: translateY(6px) rotate(4deg);
     }
     .header-title {

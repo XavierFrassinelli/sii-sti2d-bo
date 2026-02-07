@@ -46,6 +46,12 @@ function walk(dir) {
 }
 
 function build() {
+  console.log('🏗️  Building...');
+  console.log('ROOT:', ROOT);
+  console.log('CONTENT_DIR:', CONTENT_DIR);
+  console.log('TEMPLATES_DIR:', TEMPLATES_DIR);
+  console.log('DIST_DIR:', DIST_DIR);
+  
   ensureDir(DIST_DIR);
   if (!fs.existsSync(CONTENT_DIR)) {
     console.error('Aucun dossier content/ trouvé.');
@@ -83,3 +89,6 @@ function build() {
     console.log('Copied assets (logos, images)');
   }
 }
+
+build();
+console.log('✅ Build complete!');
