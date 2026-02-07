@@ -1,0 +1,17 @@
+{
+  "name": "sii-sti2d-bo-md",
+  "version": "0.1.0",
+  "description": "Générateur simple Markdown → HTML pour le programme SII (STI2D) basé sur le BO",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "npx http-server dist -o"
+  },
+  "keywords": ["sii","sti2d","bo","markdown","education"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^13.0.1"
+  }
+}
