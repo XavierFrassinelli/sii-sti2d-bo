@@ -71,6 +71,15 @@ function build() {
     fs.cpSync(staticDir, destStatic, { recursive: true });
     console.log('Copied static assets');
   }
+  
+  // Copy assets (logos, images, etc.)
+  const assetsDir = path.join(ROOT, 'assets');
+  if (fs.existsSync(assetsDir)) {
+    const destAssets = path.join(DIST_DIR, 'assets');
+    if (fs.existsSync(destAssets)) {
+      fs.rmSync(destAssets, { recursive: true });
+    }
+    fs.cpSync(assetsDir, destAssets, { recursive: true });
+    console.log('Copied assets (logos, images)');
+  }
 }
-
-build();
