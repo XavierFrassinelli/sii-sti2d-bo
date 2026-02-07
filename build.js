@@ -8,7 +8,7 @@ const md = new MarkdownIt({ html: true });
 const ROOT = path.resolve(__dirname);
 const CONTENT_DIR = path.join(ROOT, 'content');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
-const DIST_DIR = path.join(ROOT, 'dist');
+const DIST_DIR = path.join(ROOT, 'docs');
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });

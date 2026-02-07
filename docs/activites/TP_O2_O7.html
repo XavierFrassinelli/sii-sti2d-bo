@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Activités et TP - Objectifs O2-O7</title>
+  <style>
+    :root {
+      --primary: #002855;
+      --secondary: #1a5490;
+      --accent: #ff6b35;
+      --light: #f5f7fa;
+      --text: #1f2937;
+      --border: #e5e7eb;
+      --o1: #1e40af;
+      --o2: #7c2d12;
+      --o3: #065f46;
+      --o4: #4f46e5;
+      --o5: #be185d;
+      --o6: #92400e;
+      --o7: #6b21a8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    header nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: border-color 0.2s;
+    }
+    header nav a:hover {
+      border-bottom-color: var(--accent);
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2 { color: var(--primary); margin-top: 1.5rem; }
+    h1 { border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+    h2 { border-left: 4px solid var(--secondary); padding-left: 1rem; }
+    h3 { color: var(--secondary); margin-top: 1.2rem; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .objectif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .objectif-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .objectif-card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .objectif-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .objectif-card a:hover {
+      background: var(--secondary);
+      text-decoration: none;
+    }
+    .o1 { border-left-color: var(--o1); }
+    .o1 h3 { color: var(--o1); }
+    .o2 { border-left-color: var(--o2); }
+    .o2 h3 { color: var(--o2); }
+    .o3 { border-left-color: var(--o3); }
+    .o3 h3 { color: var(--o3); }
+    .o4 { border-left-color: var(--o4); }
+    .o4 h3 { color: var(--o4); }
+    .o5 { border-left-color: var(--o5); }
+    .o5 h3 { color: var(--o5); }
+    .o6 { border-left-color: var(--o6); }
+    .o6 h3 { color: var(--o6); }
+    .o7 { border-left-color: var(--o7); }
+    .o7 h3 { color: var(--o7); }
+    .competence {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    .competence strong {
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer p { margin: 0.5rem 0; }
+    
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+    #backToTop:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Header with Logos */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-logos {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .header-logos .logo {
+      height: 60px;
+      width: auto;
+      max-width: 100px;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+      cursor: pointer;
+    }
+    .header-logos .logo:hover {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+    .header-logos .logo-1 {
+      transform: translateY(-8px) rotate(-5deg);
+    }
+    .header-logos .logo-2 {
+      transform: translateY(5px) rotate(3deg);
+    }
+    .header-logos .logo-3 {
+      transform: translateY(-3px) rotate(-2deg);
+    }
+    .header-logos .logo-4 {
+      transform: translateY(6px) rotate(4deg);
+    }
+    .header-title {
+      flex: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    /* Illustration sections */
+    .illustration {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(79, 70, 229, 0.05));
+      border-radius: 8px;
+      font-size: 3rem;
+    }
+    
+    /* Enhanced card styling */
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .objectif-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .objectif-card:hover::before {
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      #backToTop {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+      }
+      .header-top {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-logos {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="container">
+    <div class="header-top">
+      <div class="header-logos">
+        <img src="/assets/logos/2i2d.png" alt="2I2D logo" title="2I2D - Ingénierie, Innovation & Développement Durable" class="logo logo-1">
+        <img src="/assets/logos/i2d.png" alt="I2D logo" title="Ingénierie & Développement Durable" class="logo logo-2">
+        <img src="/assets/logos/it.png" alt="Innovation Technologique logo" title="Innovation Technologique" class="logo logo-3">
+        <img src="/assets/logos/logoVH.png" alt="Lycée Victor Hugo" title="Lycée Victor Hugo" class="logo logo-4">
+      </div>
+      <div class="header-title">
+        <h1>Programme SII — STI2D (BO)</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="/index.html" style="color:#fff;">📚 Accueil</a>
+      <a href="/objectifs/O1.html" style="color:#fff;">O1 - Caractériser</a>
+      <a href="/activites/TP_O1.html" style="color:#fff;">🔬 TP & Activités</a>
+      <a href="/fiches-eleves/Fiche_Analyse_Produit.html" style="color:#fff;">📋 Fiches Élèves</a>
+      <a href="/ressources/Ressources_Videos.html" style="color:#fff;">🎥 Ressources</a>
+      <a href="/ressources/Quiz_O1_O7.html" style="color:#fff;">📝 Quiz</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <h1>Activités et TP - O2 à O7</h1>
+<h2>O2 - Identifier les éléments influents</h2>
+<h3>TP 2.1 - Décodage CdC : Smartphone</h3>
+<p><strong>Niveau :</strong> Débutant | <strong>Durée :</strong> 2h | <strong>Format :</strong> Groupe 3</p>
+<ul>
+<li>Fournir CdC réel d'un smartphone (simplifié)</li>
+<li>Élèves surlignent exigences par catégorie (perf, coût, ergonomie)</li>
+<li>Créent matrice exigence/importance/faisabilité</li>
+<li><strong>Livrable :</strong> Tableau priorité exigences</li>
+</ul>
+<h3>TP 2.2 - Analyse compétitivité : Écouteurs sans fil</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 3h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Benchmarking 4-5 modèles concurrents (Apple AirPods, Samsung, Xiaomi, etc.)</li>
+<li>Tableau comparatif (prix, autonomie, qualité audio, design)</li>
+<li>Matrice positionnement (prix vs perf)</li>
+<li><strong>Livrable :</strong> Poster positionnement + recommandations</li>
+</ul>
+<hr>
+<h2>O3 - Analyser organisation fonctionnelle et structurelle</h2>
+<h3>TP 3.1 - Diagramme FAST : Machine à café</h3>
+<p><strong>Niveau :</strong> Débutant | <strong>Durée :</strong> 2h | <strong>Format :</strong> Groupe 3</p>
+<ul>
+<li>Donnez fonction principale &quot;Préparer café chaud&quot;</li>
+<li>Élèves dérivent 3-4 niveaux sous-fonctions (FAST)</li>
+<li>Tracent flux (eau, électricité, énergie thermique)</li>
+<li><strong>Livrable :</strong> Diagramme FAST annoté + schéma flux</li>
+</ul>
+<h3>TP 3.2 - Architecture système : Robot aspirateur</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 3h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Fournir teardown photos/vidéo robot</li>
+<li>Schéma bloc (moteurs, capteurs, processeur, batterie)</li>
+<li>Diagramme connexions (CAN, I2C, GPIO)</li>
+<li><strong>Livrable :</strong> Architecture schéma + tableau interfaces</li>
+</ul>
+<h3>TP 3.3 - Chronogramme temporel : Feu tricolore</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 2h | <strong>Format :</strong> Individuel</p>
+<ul>
+<li>Décrire machine d'états (rouge, orange, vert)</li>
+<li>Chronogramme signaux (36s cycle)</li>
+<li>Transitions et conditions</li>
+<li><strong>Livrable :</strong> Diagramme états + chronogramme</li>
+</ul>
+<h3>TP 3.4 - Benchmark technologique : Types d'éclairage</h3>
+<p><strong>Niveau :</strong> Avancé | <strong>Durée :</strong> 3h | <strong>Format :</strong> Groupe 3</p>
+<ul>
+<li>Comparer LED vs Halogène vs Incandescence</li>
+<li>Tableau (rendement, durée, coût, spectre)</li>
+<li>Test mesure consommation watts en labo</li>
+<li><strong>Livrable :</strong> Rapport comparatif chiffré + graphiques</li>
+</ul>
+<hr>
+<h2>O4 - Communiquer</h2>
+<h3>TP 4.1 - Schéma technique normalisé : Circuit électrique</h3>
+<p><strong>Niveau :</strong> Débutant | <strong>Durée :</strong> 2h | <strong>Format :</strong> Individuel</p>
+<ul>
+<li>Apprendre symboles IEC (résistance, LED, switch, etc.)</li>
+<li>Dessiner circuit simple (ex: alimentation LED 12V + résistance)</li>
+<li>Cotation ISO (tensions, courants)</li>
+<li><strong>Livrable :</strong> Schéma normalisé crayonné + scanné/photo</li>
+</ul>
+<h3>TP 4.2 - Notice d'utilisation : Produit simple</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 3h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Rédiger notice 1-2 pages produit simple (ex: batterie externe, montre, bracelet)</li>
+<li>Style IKEA (pictogrammes, pas de texte)</li>
+<li>Traduction anglais section clé</li>
+<li><strong>Livrable :</strong> Notice PDF + version anglaise</li>
+</ul>
+<h3>TP 4.3 - Présentation orale argumentée</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 2h prep + 20 min présentation</p>
+<ul>
+<li>Préparer présentation 15 min (PowerPoint, Prezi)</li>
+<li>Règle 6/6/6 (6 mots/ligne, 6 lignes/slide, 6 sec/slide)</li>
+<li>Présentation + débat questions jury</li>
+<li><strong>Livrable :</strong> Slides + script + vidéo enregistrement</li>
+</ul>
+<hr>
+<h2>O5 - Imaginer une solution</h2>
+<h3>TP 5.1 - Brainstorming créatif : Poubelle intelligente</h3>
+<p><strong>Niveau :</strong> Débutant | <strong>Durée :</strong> 2h | <strong>Format :</strong> Groupe 4</p>
+<ul>
+<li>Problème : &quot;Comment améliorer tri des déchets?&quot;</li>
+<li>Brainstorming libre 30 min (20 idées min)</li>
+<li>Morphologie (fonction × technologie) 40 min</li>
+<li>Sélection matrice multi-critères 20 min</li>
+<li><strong>Livrable :</strong> Fiche idées + matrice sélection</li>
+</ul>
+<h3>TP 5.2 - Planification GANTT : Mini-projet 4 semaines</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 2h | <strong>Format :</strong> Groupe 4</p>
+<ul>
+<li>Définir tâches projet concret (ex: robot suivi ligne)</li>
+<li>GanttProject/Excel : 15-20 tâches, dépendances, durées</li>
+<li>Identifier chemin critique, slack</li>
+<li><strong>Livrable :</strong> Diagramme Gantt + document planning</li>
+</ul>
+<h3>TP 5.3 - Projet complet sur 8-12 semaines</h3>
+<p><strong>Niveau :</strong> Avancé | <strong>Durée :</strong> Projet long | <strong>Format :</strong> Groupe 4</p>
+<ul>
+<li>Cahier des charges écrit</li>
+<li>Planning + jalons (0%, 50%, 100%)</li>
+<li>Design itératif (sketches → prototype → tests)</li>
+<li>Documentation complète + soutenance 20 min</li>
+<li><strong>Livrable :</strong> Dossier projet + prototype + présentation</li>
+</ul>
+<hr>
+<h2>O6 - Simuler et prédire</h2>
+<h3>TP 6.1 - Simulation charge batterie (Matlab/Python)</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 3h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Modèle Thévenin simple batterie Li-ion</li>
+<li>Configurer temps charge (paramètres courant, tension)</li>
+<li>Simuler jusqu'80% puis mode lent jusqu'100%</li>
+<li><strong>Livrable :</strong> Script Simulink/Matlab + graphiques résultats</li>
+</ul>
+<h3>TP 6.2 - Simulation thermique : Dissipateur CPU</h3>
+<p><strong>Niveau :</strong> Avancé | <strong>Durée :</strong> 4h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Utiliser FreeCAD + Fenics (ou ANSYS gratuit)</li>
+<li>Modèle 2D simple : CPU source chaleur → dissipateur</li>
+<li>Configurer conditions aux limites (température ambiante)</li>
+<li>Visualiser champ température, identifier points chauds</li>
+<li><strong>Livrable :</strong> Rapport simulation + captures écran</li>
+</ul>
+<h3>TP 6.3 - Validation modèle vs mesure réelle</h3>
+<p><strong>Niveau :</strong> Avancé | <strong>Durée :</strong> 4h | <strong>Format :</strong> Binôme</p>
+<ul>
+<li>Simulation + expérience réelle même système (ex: RC circuit)</li>
+<li>Mesurer avec oscilloscope + simuler avec Matlab</li>
+<li>Comparer courbes, analyser écarts</li>
+<li><strong>Livrable :</strong> Rapport comparaison + justification écarts</li>
+</ul>
+<hr>
+<h2>O7 - Expérimenter et réaliser</h2>
+<h3>TP 7.1 - Prototypage rapide : Maquette carton</h3>
+<p><strong>Niveau :</strong> Débutant | <strong>Durée :</strong> 2h | <strong>Format :</strong> Groupe 3</p>
+<ul>
+<li>Défi : construire maquette structure simple (ex: tour carton 50cm)</li>
+<li>Matériaux : carton, colle, cutter</li>
+<li>Tester stabilité (charge progressive)</li>
+<li><strong>Livrable :</strong> Prototype + photo + fiche test</li>
+</ul>
+<h3>TP 7.2 - Fabrication 3D : Pièce simple</h3>
+<p><strong>Niveau :</strong> Intermédiaire | <strong>Durée :</strong> 2h prep + 2h fabrication</p>
+<ul>
+<li>Concevoir pièce CAO (FreeCAD) : boîtier électronique simple</li>
+<li>Slicer (Cura), imprimer PLA</li>
+<li>Post-traitement (nettoyage, ponçage)</li>
+<li><strong>Livrable :</strong> Fichier STL + photo prototype + retex</li>
+</ul>
+<h3>TP 7.3 - Protocole d'essais : Robot suivi de ligne</h3>
+<p><strong>Niveau :</strong> Avancé | <strong>Durée :</strong> 4h | <strong>Format :</strong> Groupe 3</p>
+<ul>
+<li>Définir protocole (10-15 tests : vitesse, virage, obstacles)</li>
+<li>Construire piste test standard</li>
+<li>Mesurer temps, distances, écarts ligne</li>
+<li>Tableau résultats + graphiques</li>
+<li><strong>Livrable :</strong> Protocole écrit + données + rapport analyse</li>
+</ul>
+<hr>
+<h2>Ressources transversales</h2>
+<ul>
+<li><strong>Logiciels</strong> : FreeCAD, Matlab, Python (Pandas), GanttProject, Canva</li>
+<li><strong>Vidéos tutorielles</strong> : YouTube (FreeCAD, Matlab, Arduino, impression 3D)</li>
+<li><strong>Documentations</strong> : Normes ISO, datasheets, tutoriels logiciels</li>
+<li><strong>Plateformes</strong> : GitHub (versionning), Tinkercad (CAO simple), Repl.it (Python)</li>
+</ul>
+
+  </main>
+  <footer>
+  <div class="container">
+    <p>Sources: Bulletin Officiel (BO). Projet généré localement.</p>
+    <p>Contact: établissement ou auteur</p>
+  </div>
+</footer>
+
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Retour en haut">↑</button>
+  
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    // Scroll to top smoothly
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

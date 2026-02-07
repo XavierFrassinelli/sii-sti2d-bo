@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fiche Élève - Analyse d'un produit</title>
+  <style>
+    :root {
+      --primary: #002855;
+      --secondary: #1a5490;
+      --accent: #ff6b35;
+      --light: #f5f7fa;
+      --text: #1f2937;
+      --border: #e5e7eb;
+      --o1: #1e40af;
+      --o2: #7c2d12;
+      --o3: #065f46;
+      --o4: #4f46e5;
+      --o5: #be185d;
+      --o6: #92400e;
+      --o7: #6b21a8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    header nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: border-color 0.2s;
+    }
+    header nav a:hover {
+      border-bottom-color: var(--accent);
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2 { color: var(--primary); margin-top: 1.5rem; }
+    h1 { border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+    h2 { border-left: 4px solid var(--secondary); padding-left: 1rem; }
+    h3 { color: var(--secondary); margin-top: 1.2rem; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .objectif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .objectif-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .objectif-card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .objectif-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .objectif-card a:hover {
+      background: var(--secondary);
+      text-decoration: none;
+    }
+    .o1 { border-left-color: var(--o1); }
+    .o1 h3 { color: var(--o1); }
+    .o2 { border-left-color: var(--o2); }
+    .o2 h3 { color: var(--o2); }
+    .o3 { border-left-color: var(--o3); }
+    .o3 h3 { color: var(--o3); }
+    .o4 { border-left-color: var(--o4); }
+    .o4 h3 { color: var(--o4); }
+    .o5 { border-left-color: var(--o5); }
+    .o5 h3 { color: var(--o5); }
+    .o6 { border-left-color: var(--o6); }
+    .o6 h3 { color: var(--o6); }
+    .o7 { border-left-color: var(--o7); }
+    .o7 h3 { color: var(--o7); }
+    .competence {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    .competence strong {
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer p { margin: 0.5rem 0; }
+    
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+    #backToTop:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Header with Logos */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-logos {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .header-logos .logo {
+      height: 60px;
+      width: auto;
+      max-width: 100px;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+      cursor: pointer;
+    }
+    .header-logos .logo:hover {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+    .header-logos .logo-1 {
+      transform: translateY(-8px) rotate(-5deg);
+    }
+    .header-logos .logo-2 {
+      transform: translateY(5px) rotate(3deg);
+    }
+    .header-logos .logo-3 {
+      transform: translateY(-3px) rotate(-2deg);
+    }
+    .header-logos .logo-4 {
+      transform: translateY(6px) rotate(4deg);
+    }
+    .header-title {
+      flex: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    /* Illustration sections */
+    .illustration {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(79, 70, 229, 0.05));
+      border-radius: 8px;
+      font-size: 3rem;
+    }
+    
+    /* Enhanced card styling */
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .objectif-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .objectif-card:hover::before {
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      #backToTop {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+      }
+      .header-top {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-logos {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="container">
+    <div class="header-top">
+      <div class="header-logos">
+        <img src="/assets/logos/2i2d.png" alt="2I2D logo" title="2I2D - Ingénierie, Innovation & Développement Durable" class="logo logo-1">
+        <img src="/assets/logos/i2d.png" alt="I2D logo" title="Ingénierie & Développement Durable" class="logo logo-2">
+        <img src="/assets/logos/it.png" alt="Innovation Technologique logo" title="Innovation Technologique" class="logo logo-3">
+        <img src="/assets/logos/logoVH.png" alt="Lycée Victor Hugo" title="Lycée Victor Hugo" class="logo logo-4">
+      </div>
+      <div class="header-title">
+        <h1>Programme SII — STI2D (BO)</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="/index.html" style="color:#fff;">📚 Accueil</a>
+      <a href="/objectifs/O1.html" style="color:#fff;">O1 - Caractériser</a>
+      <a href="/activites/TP_O1.html" style="color:#fff;">🔬 TP & Activités</a>
+      <a href="/fiches-eleves/Fiche_Analyse_Produit.html" style="color:#fff;">📋 Fiches Élèves</a>
+      <a href="/ressources/Ressources_Videos.html" style="color:#fff;">🎥 Ressources</a>
+      <a href="/ressources/Quiz_O1_O7.html" style="color:#fff;">📝 Quiz</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <h1>Fiche Élève : Analyse d'un produit</h1>
+<p><strong>Nom(s) :</strong> _________________________ | <strong>Date :</strong> _________ | <strong>Classe :</strong> _______</p>
+<p><strong>Produit analysé :</strong> ________________________________</p>
+<hr>
+<h2>1. Identification des constituants</h2>
+<p>Listez les 10-15 constituants majeurs du produit :</p>
+<table>
+<thead>
+<tr>
+<th>N°</th>
+<th>Constituant</th>
+<th>Matériau</th>
+<th>Fonction principale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>2. Schéma bloc et flux</h2>
+<p><strong>Entrées du système :</strong></p>
+<ul>
+<li>......................................</li>
+<li>......................................</li>
+</ul>
+<p><strong>Sorties du système :</strong></p>
+<ul>
+<li>......................................</li>
+<li>......................................</li>
+</ul>
+<p><strong>Flux internes (énergie, information, matière) :</strong></p>
+<p><em>À dessiner sur page séparée ou photocopie schéma annoté</em></p>
+<hr>
+<h2>3. Justification des choix structurels</h2>
+<p>Choisissez <strong>3 constituants clés</strong> et justifiez le choix de leurs matériaux/technologies :</p>
+<h3>Constituant 1 : _________________________________</h3>
+<p><strong>Matériau/Technologie utilisée :</strong> _________________</p>
+<p><strong>Justification :</strong></p>
+<ul>
+<li>Performance technique : .................................</li>
+<li>Coût : .................................</li>
+<li>Environnement : .................................</li>
+<li>Autres : .................................</li>
+</ul>
+<h3>Constituant 2 : _________________________________</h3>
+<p><strong>Matériau/Technologie utilisée :</strong> _________________</p>
+<p><strong>Justification :</strong></p>
+<ul>
+<li>Performance technique : .................................</li>
+<li>Coût : .................................</li>
+<li>Environnement : .................................</li>
+<li>Autres : .................................</li>
+</ul>
+<h3>Constituant 3 : _________________________________</h3>
+<p><strong>Matériau/Technologie utilisée :</strong> _________________</p>
+<p><strong>Justification :</strong></p>
+<ul>
+<li>Performance technique : .................................</li>
+<li>Coût : .................................</li>
+<li>Environnement : .................................</li>
+<li>Autres : .................................</li>
+</ul>
+<hr>
+<h2>4. Approche développement durable</h2>
+<p><strong>Impact environnemental estimé :</strong></p>
+<ul>
+<li>Fabrication : Énergie ..... kWh, CO2 ..... kg</li>
+<li>Transport : Distance ....... km, type emballage ......</li>
+<li>Utilisation : Durée vie ...... ans, consommation ......</li>
+<li>Fin de vie : Recyclable? OUI/NON, matériaux récupérables ........</li>
+</ul>
+<p><strong>Recommandations d'amélioration :</strong></p>
+<ol>
+<li>.................................</li>
+<li>.................................</li>
+<li>.................................</li>
+</ol>
+<hr>
+<h2>5. Grille d'autoévaluation</h2>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th style="text-align:center">Non</th>
+<th style="text-align:center">Partiellement</th>
+<th style="text-align:center">Oui</th>
+<th style="text-align:center">Très bien</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schéma clair et complet</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+</tr>
+<tr>
+<td>Constituants identifiés</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+</tr>
+<tr>
+<td>Justifications détaillées</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+</tr>
+<tr>
+<td>Approche DD intégrée</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+</tr>
+<tr>
+<td>Présentation propre</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+<td style="text-align:center">☐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Points à améliorer :</strong> .................................</p>
+<hr>
+<p><strong>Signature élève :</strong> _________________ | <strong>Signature enseignant :</strong> _________________</p>
+
+  </main>
+  <footer>
+  <div class="container">
+    <p>Sources: Bulletin Officiel (BO). Projet généré localement.</p>
+    <p>Contact: établissement ou auteur</p>
+  </div>
+</footer>
+
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Retour en haut">↑</button>
+  
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    // Scroll to top smoothly
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>O1 - Caractériser des produits ou des constituants</title>
+  <style>
+    :root {
+      --primary: #002855;
+      --secondary: #1a5490;
+      --accent: #ff6b35;
+      --light: #f5f7fa;
+      --text: #1f2937;
+      --border: #e5e7eb;
+      --o1: #1e40af;
+      --o2: #7c2d12;
+      --o3: #065f46;
+      --o4: #4f46e5;
+      --o5: #be185d;
+      --o6: #92400e;
+      --o7: #6b21a8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    header nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: border-color 0.2s;
+    }
+    header nav a:hover {
+      border-bottom-color: var(--accent);
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2 { color: var(--primary); margin-top: 1.5rem; }
+    h1 { border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+    h2 { border-left: 4px solid var(--secondary); padding-left: 1rem; }
+    h3 { color: var(--secondary); margin-top: 1.2rem; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .objectif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .objectif-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .objectif-card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .objectif-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .objectif-card a:hover {
+      background: var(--secondary);
+      text-decoration: none;
+    }
+    .o1 { border-left-color: var(--o1); }
+    .o1 h3 { color: var(--o1); }
+    .o2 { border-left-color: var(--o2); }
+    .o2 h3 { color: var(--o2); }
+    .o3 { border-left-color: var(--o3); }
+    .o3 h3 { color: var(--o3); }
+    .o4 { border-left-color: var(--o4); }
+    .o4 h3 { color: var(--o4); }
+    .o5 { border-left-color: var(--o5); }
+    .o5 h3 { color: var(--o5); }
+    .o6 { border-left-color: var(--o6); }
+    .o6 h3 { color: var(--o6); }
+    .o7 { border-left-color: var(--o7); }
+    .o7 h3 { color: var(--o7); }
+    .competence {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--primary);
+    }
+    .competence strong {
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer p { margin: 0.5rem 0; }
+    
+    /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+    #backToTop:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    /* Header with Logos */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-logos {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .header-logos .logo {
+      height: 60px;
+      width: auto;
+      max-width: 100px;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+      cursor: pointer;
+    }
+    .header-logos .logo:hover {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+    .header-logos .logo-1 {
+      transform: translateY(-8px) rotate(-5deg);
+    }
+    .header-logos .logo-2 {
+      transform: translateY(5px) rotate(3deg);
+    }
+    .header-logos .logo-3 {
+      transform: translateY(-3px) rotate(-2deg);
+    }
+    .header-logos .logo-4 {
+      transform: translateY(6px) rotate(4deg);
+    }
+    .header-title {
+      flex: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    /* Illustration sections */
+    .illustration {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(79, 70, 229, 0.05));
+      border-radius: 8px;
+      font-size: 3rem;
+    }
+    
+    /* Enhanced card styling */
+    .objectif-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 5px solid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .objectif-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .objectif-card:hover::before {
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      #backToTop {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+      }
+      .header-top {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header-logos {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="container">
+    <div class="header-top">
+      <div class="header-logos">
+        <img src="/assets/logos/2i2d.png" alt="2I2D logo" title="2I2D - Ingénierie, Innovation & Développement Durable" class="logo logo-1">
+        <img src="/assets/logos/i2d.png" alt="I2D logo" title="Ingénierie & Développement Durable" class="logo logo-2">
+        <img src="/assets/logos/it.png" alt="Innovation Technologique logo" title="Innovation Technologique" class="logo logo-3">
+        <img src="/assets/logos/logoVH.png" alt="Lycée Victor Hugo" title="Lycée Victor Hugo" class="logo logo-4">
+      </div>
+      <div class="header-title">
+        <h1>Programme SII — STI2D (BO)</h1>
+      </div>
+    </div>
+    <nav>
+      <a href="/index.html" style="color:#fff;">📚 Accueil</a>
+      <a href="/objectifs/O1.html" style="color:#fff;">O1 - Caractériser</a>
+      <a href="/activites/TP_O1.html" style="color:#fff;">🔬 TP & Activités</a>
+      <a href="/fiches-eleves/Fiche_Analyse_Produit.html" style="color:#fff;">📋 Fiches Élèves</a>
+      <a href="/ressources/Ressources_Videos.html" style="color:#fff;">🎥 Ressources</a>
+      <a href="/ressources/Quiz_O1_O7.html" style="color:#fff;">📝 Quiz</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <h1>O1 - Caractériser des produits ou des constituants</h1>
+<p><strong>Objectif :</strong> Caractériser des produits ou des constituants en privilégiant un usage raisonné du point de vue développement durable.</p>
+<h2>Compétences</h2>
+<h3>CO1.1 - Justifier les choix structurels</h3>
+<p>Justifier les choix des structures matérielles et/ou logicielles d'un produit, identifier les flux mis en œuvre dans une approche de développement durable.</p>
+<p><strong>Contenu pédagogique :</strong></p>
+<ul>
+<li>Analyse des structures matérielles (mécanique, électronique)</li>
+<li>Analyse des structures logicielles et architectures logicielles</li>
+<li>Identification des flux d'énergie, d'information et de matière</li>
+<li>Approche de cycle de vie produit (ACV)</li>
+<li>Indicateurs de durabilité (éco-conception)</li>
+</ul>
+<p><strong>Contextes techniques pertinents :</strong></p>
+<ul>
+<li><strong>Vélo électrique</strong> : châssis aluminium vs acier (rapport masse/résistance), batterie Li-ion (cycles de charge)</li>
+<li><strong>Éclairage LED</strong> : comparaison technologie halogène vs LED (efficacité énergétique, durée de vie)</li>
+<li><strong>Téléphone portable</strong> : architecture matérielle (processeur, RAM, batterie) vs logicielle (système d'exploitation)</li>
+<li><strong>Turbine éolienne</strong> : structure mécanique (matériaux composites), système de contrôle électronique</li>
+<li><strong>Système domotique</strong> : architecture centralisée vs décentralisée, protocoles de communication (Wifi, Zigbee)</li>
+</ul>
+<p><strong>Modalités pédagogiques :</strong></p>
+<ul>
+<li><strong>Démarche d'investigation</strong> : fournir un produit démontable (vélo, lampe, appareil électroménager) et faire identifier les constituants principaux</li>
+<li><strong>Travail collaboratif</strong> : en groupes de 3-4, analyser les flux d'énergie et tracer un diagramme Sankey</li>
+<li><strong>Ressource vidéo</strong> : documentaire sur la fabrication (ex: fabrication batterie, procédé d'extrusion)</li>
+<li><strong>Visite ou classe inversée</strong> : inviter ingénieur design/développement durable ou regarder conférence en ligne</li>
+</ul>
+<p><strong>Démarche :</strong> Analyser un produit existant, identifier ses constituants, justifier leurs choix au regard de la durabilité.</p>
+<hr>
+<h3>CO1.2 - Justifier les solutions selon l'ergonomie et le design</h3>
+<p>Justifier le choix d'une solution selon des contraintes d'ergonomie et de design.</p>
+<p><strong>Contenu pédagogique :</strong></p>
+<ul>
+<li>Principes d'ergonomie et d'interface utilisateur</li>
+<li>Design produit : forme, couleur, matériaux</li>
+<li>Accessibilité et inclusivité</li>
+<li>Normes et standards de confort</li>
+<li>Bilan ergonomique et test utilisateur</li>
+</ul>
+<p><strong>Contextes techniques pertinents :</strong></p>
+<ul>
+<li><strong>Souris informatique</strong> : forme ergonomique vs plate, matériaux, boutons (tactilité)</li>
+<li><strong>Chaise de bureau</strong> : hauteur réglable, dossier lombaire, accoudoirs (norme ISO 4875)</li>
+<li><strong>Poignée d'outil</strong> : diamètre, texture, poids, équilibre</li>
+<li><strong>Écran tactile</strong> : taille de zone cliquable, contraste (WCAG pour accessibilité)</li>
+<li><strong>Clavier</strong> : disposition (AZERTY vs QWERTY), distance frappe, retour tactile</li>
+</ul>
+<p><strong>Modalités pédagogiques :</strong></p>
+<ul>
+<li><strong>Test utilisateur</strong> : faire passer un questionnaire de confort sur 5-10 utilisateurs (produit existant)</li>
+<li><strong>Analyse comparative</strong> : photos/vidéos de 3 variantes (ex: 3 souris) avec tableau critères</li>
+<li><strong>Prototypage papier</strong> : sketcher des interfaces, tester sur papier avant numérisation</li>
+<li><strong>Atelier design thinking</strong> : 30 min idéation, 30 min prototypage rapide (carton, argile)</li>
+</ul>
+<p><strong>Démarche :</strong> Évaluer l'ergonomie d'un produit, proposer des améliorations de design justifiées.</p>
+<hr>
+<h3>CO1.3 - Justifier les solutions constructives et l'impact environnemental</h3>
+<p>Justifier les solutions constructives d'un produit au regard des performances environnementales et estimer leur impact sur l'efficacité globale.</p>
+<p><strong>Contenu pédagogique :</strong></p>
+<ul>
+<li>Sélection des matériaux (propriétés, recyclabilité)</li>
+<li>Procédés de fabrication (impact énergétique et environnemental)</li>
+<li>Transport, emballage, fin de vie</li>
+<li>Calcul d'impact environnemental (ACV simplifiée)</li>
+<li>Efficacité énergétique du produit</li>
+</ul>
+<p><strong>Contextes techniques pertinents :</strong></p>
+<ul>
+<li><strong>Emballage</strong> : carton recyclé vs plastique conventionnel vs bioplastique (énergie production, biodégradabilité)</li>
+<li><strong>Batterie automobile</strong> : Lithium vs NiMH (densité énergétique, empreinte carbone)</li>
+<li><strong>Isolant thermique</strong> : laine de roche vs laine végétale vs polyuréthane (conductivité, impact fabri)</li>
+<li><strong>Moteur électrique</strong> : matériaux du stator (cuivre, aluminium) et rendement énergétique</li>
+<li><strong>Réfrigérant</strong> : fluide CFC vs HFC vs alternatives non toxiques (Ozone Depletion Potential)</li>
+</ul>
+<p><strong>Modalités pédagogiques :</strong></p>
+<ul>
+<li><strong>Calcul d'ACV simplifiée</strong> : fournir fiche technique produit, élèves calculent points d'impact (fabrication, transport, utilisation)</li>
+<li><strong>Visite usine de recyclage</strong> : comprendre fin de vie produit et valorisation matière</li>
+<li><strong>Simulation/outil en ligne</strong> : EcoInvent, Simapro allégé ou fichier Excel préparé</li>
+<li><strong>Débat argumenté</strong> : &quot;Faut-il absolument réduire l'emballage ?&quot; avec données chiffrées</li>
+<li><strong>Projet conception</strong> : créer un produit éco-conçu vs version &quot;classique&quot;, comparer impact</li>
+</ul>
+<p><strong>Démarche :</strong> Comparer plusieurs solutions constructives en fonction de leur impact environnemental et de l'efficacité globale du produit.</p>
+<hr>
+<h2>Modalités d'évaluation</h2>
+<h3>Évaluation CO1.1</h3>
+<p><strong>Critères de réussite :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Descripteur</th>
+<th>Niveau 1 (A développer)</th>
+<th>Niveau 2 (En cours)</th>
+<th>Niveau 3 (Satisfaisant)</th>
+<th>Niveau 4 (Très bon)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identification des constituants</strong></td>
+<td>Énumère peu de constituants</td>
+<td>Énumère la plupart des constituants</td>
+<td>Énumère tous les constituants avec classification</td>
+<td>Classifie par fonction + analyse hiérarchique</td>
+</tr>
+<tr>
+<td><strong>Justification choix structurels</strong></td>
+<td>Justification absente ou vague</td>
+<td>Justification partielle ou imprécise</td>
+<td>Justification claire des choix matériels/logiciels</td>
+<td>Justification détaillée + trade-offs considérés</td>
+</tr>
+<tr>
+<td><strong>Flux d'énergie/matière</strong></td>
+<td>Identifie 1 flux</td>
+<td>Identifie 2-3 flux</td>
+<td>Identifie tous les flux principaux</td>
+<td>Modélise flux avec diagramme Sankey</td>
+</tr>
+<tr>
+<td><strong>Approche développement durable</strong></td>
+<td>Absent</td>
+<td>Mentionné sans détail</td>
+<td>Lien établi pour 2-3 critères</td>
+<td>Analyse complète ACV (production, utilisation, fin de vie)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Modalités suggérées :</strong></p>
+<ul>
+<li>Rapport d'analyse (2-3 pages) + présentation 5-10 min</li>
+<li>Démontage guidé + fiche d'identification</li>
+<li>Schéma/diagramme annoté</li>
+<li>Évaluation par pairs (groupe expert commente groupe visiteur)</li>
+</ul>
+<hr>
+<h3>Évaluation CO1.2</h3>
+<p><strong>Critères de réussite :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Descripteur</th>
+<th>Niveau 1</th>
+<th>Niveau 2</th>
+<th>Niveau 3</th>
+<th>Niveau 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Analyse ergonomique</strong></td>
+<td>Très superficielle</td>
+<td>Identifie quelques points</td>
+<td>Analyse 5-6 critères ergonomiques</td>
+<td>Analyse détaillée + tests utilisateur</td>
+</tr>
+<tr>
+<td><strong>Justification design</strong></td>
+<td>Absence ou très faible</td>
+<td>Design décrit sans justification</td>
+<td>Design justifié sur 3-4 aspects</td>
+<td>Design totalement justifié + alternatives</td>
+</tr>
+<tr>
+<td><strong>Respect normes/standards</strong></td>
+<td>Ignore les normes</td>
+<td>Mentionne 1 norme</td>
+<td>Référence 2-3 normes pertinentes</td>
+<td>Applique normes + citations précises</td>
+</tr>
+<tr>
+<td><strong>Proposition améliorations</strong></td>
+<td>Absente</td>
+<td>Améliorations vagues</td>
+<td>3-4 améliorations réalistes et justifiées</td>
+<td>Améliorations innovantes + trade-offs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Modalités suggérées :</strong></p>
+<ul>
+<li>Questionnaire ergonomique auprès d'utilisateurs (20-30 personnes)</li>
+<li>Prototype d'amélioration (sketch, maquette)</li>
+<li>Présentation comparative avec démonstration</li>
+<li>Poster ou infographie résumant analyse</li>
+</ul>
+<hr>
+<h3>Évaluation CO1.3</h3>
+<p><strong>Critères de réussite :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Descripteur</th>
+<th>Niveau 1</th>
+<th>Niveau 2</th>
+<th>Niveau 3</th>
+<th>Niveau 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Calcul d'impact environnemental</strong></td>
+<td>Calcul absent ou erroné</td>
+<td>Calcul partiel avec erreurs</td>
+<td>Calcul correct pour 2-3 critères</td>
+<td>ACV complète (fab, transport, usage, EOL)</td>
+</tr>
+<tr>
+<td><strong>Comparaison solutions</strong></td>
+<td>Pas de comparaison</td>
+<td>Comparaison descriptive</td>
+<td>Comparaison chiffrée pour 3-4 critères</td>
+<td>Comparaison détaillée + analyse sensibilité</td>
+</tr>
+<tr>
+<td><strong>Lien efficacité globale</strong></td>
+<td>Absent</td>
+<td>Mentionné vaguement</td>
+<td>Lien établi entre impact et performance</td>
+<td>Optimisation multifactorielle démontrée</td>
+</tr>
+<tr>
+<td><strong>Choix et justification</strong></td>
+<td>Choix injustifié</td>
+<td>Justification partielle</td>
+<td>Choix justifié sur critères environnementaux</td>
+<td>Choix optimisé (impact + coût + performa)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Modalités suggérées :</strong></p>
+<ul>
+<li>Fichier Excel/calcul d'ACV simplifiée (fourni partiellement)</li>
+<li>Rapport comparatif 3-4 pages</li>
+<li>Présentation graphiques (histogramme comparatif)</li>
+<li>Simulation &quot;Et si ?&quot; (sensibilité paramètres)</li>
+</ul>
+<hr>
+<h2>Ressources et outils</h2>
+<ul>
+<li>Bases de données environnementales : INIES, Ecodesign</li>
+<li>Normes ISO 14040 (ACV), ISO 14001 (management environnemental)</li>
+<li>Outil libre : OpenLCA, Simapro allégé</li>
+<li>Documentaires : &quot;Côté coulisses&quot; (France 5), &quot;La face cachée des objets&quot; (ARTE)</li>
+<li>Vidéos TED/TEDx sur éco-design</li>
+<li>Benchmark produits concurrents</li>
+</ul>
+
+  </main>
+  <footer>
+  <div class="container">
+    <p>Sources: Bulletin Officiel (BO). Projet généré localement.</p>
+    <p>Contact: établissement ou auteur</p>
+  </div>
+</footer>
+
+  
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Retour en haut">↑</button>
+  
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    // Scroll to top smoothly
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
