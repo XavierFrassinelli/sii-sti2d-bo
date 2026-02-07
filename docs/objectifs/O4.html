@@ -296,6 +296,9 @@
       <div class="header-title">
         <h1>Programme SII — STI2D (BO)</h1>
       </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Basculer thème">🌙</button>
+      </div>
     </div>
     <nav>
       <a href="index.html" style="color:#fff;">📚 Accueil</a>
@@ -307,6 +310,38 @@
     </nav>
   </div>
 </header>
+<style>
+  /* Light theme overrides when body has .theme-light */
+  body.theme-light {
+    --primary: #002855;
+    --secondary: #1a5490;
+    --accent: #ff6b35;
+    --light: #f5f7fa;
+    --text: #1f2937;
+    --border: #e5e7eb;
+  }
+  .header-actions { display:flex; align-items:center; gap:0.5rem; }
+  .theme-toggle { background: transparent; border: 1px solid rgba(255,255,255,0.12); color: var(--text); width:42px; height:42px; border-radius:8px; cursor:pointer; font-size:1.1rem; display:inline-flex; align-items:center; justify-content:center; transition: background .15s, transform .12s; }
+  .theme-toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,0.04); }
+</style>
+
+<script>
+  (function(){
+    const toggle = document.getElementById('themeToggle');
+    if(!toggle) return;
+    const body = document.body;
+    const current = localStorage.getItem('site-theme') || 'dark';
+    if(current === 'light') body.classList.add('theme-light');
+    const updateButton = () => { toggle.textContent = body.classList.contains('theme-light') ? '🌞' : '🌙'; };
+    updateButton();
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('theme-light');
+      const mode = body.classList.contains('theme-light') ? 'light' : 'dark';
+      localStorage.setItem('site-theme', mode);
+      updateButton();
+    });
+  })();
+</script>
 
   <main class="container">
     <h1>O4 - Communiquer une idée, un principe ou une solution technique</h1>
