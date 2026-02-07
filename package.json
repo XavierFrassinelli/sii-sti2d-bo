@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
-    "serve": "npx http-server dist -o"
+    "serve": "npx http-server docs -o"
   },
   "keywords": ["sii","sti2d","bo","markdown","education"],
   "author": "",
