@@ -5,7 +5,7 @@ description: "Index des objectifs et compétences du programme SII (BO)"
 
 # Programme SII — STI2D
 
-<div class="illustration">🏫 Bienvenue s: Progression STI2D </div>
+<div class="illustration">🏫 Bienvenue : Progression STI2D </div>
 
 Bienvenue sur le portail complet des **7 objectifs de formation** et leurs **compétences associées** du programme SII (Sciences de l'Ingénieur Industriel) pour la classe de STI2D, basé sur le Bulletin Officiel.
 

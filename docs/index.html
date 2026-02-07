@@ -309,6 +309,114 @@
       transform: translateY(0);
     }
     
+    /* Tables - Evaluation Rubrics */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(15, 23, 36, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    body.theme-light table {
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    table thead {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+    }
+    table thead th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.95rem;
+    }
+    table tbody tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.15s;
+    }
+    body.theme-light table tbody tr {
+      border-bottom: 1px solid #e5e7eb;
+    }
+    table tbody tr:hover {
+      background: rgba(30, 64, 175, 0.15);
+    }
+    body.theme-light table tbody tr:hover {
+      background: rgba(30, 64, 175, 0.05);
+    }
+    table tbody tr:last-child {
+      border-bottom: none;
+    }
+    table td {
+      padding: 1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    body.theme-light table td {
+      color: #1f2937;
+    }
+    table td:first-child {
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(11, 35, 64, 0.3);
+      width: 20%;
+    }
+    body.theme-light table td:first-child {
+      background: rgba(30, 64, 175, 0.08);
+      color: #0b2340;
+    }
+    
+    /* Responsive tables */
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.85rem;
+      }
+      table thead th {
+        padding: 0.75rem 0.5rem;
+      }
+      table td {
+        padding: 0.75rem 0.5rem;
+      }
+      table td:first-child {
+        width: 25%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+      table thead {
+        display: none;
+      }
+      table tbody, table tr, table td {
+        display: block;
+      }
+      table tr {
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 0.5rem;
+      }
+      table td {
+        padding-left: 30%;
+        position: relative;
+      }
+      table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5rem;
+        font-weight: 600;
+        width: 25%;
+        color: var(--primary);
+      }
+    }
+    
     @media (max-width: 768px) {
       header {
         padding: 1.5rem 1rem;
@@ -396,7 +504,7 @@
 
   <main class="container">
     <h1>Programme SII — STI2D</h1>
-<div class="illustration">🏫 Bienvenue s: Progression STI2D </div>
+<div class="illustration">🏫 Bienvenue : Progression STI2D </div>
 <p>Bienvenue sur le portail complet des <strong>7 objectifs de formation</strong> et leurs <strong>compétences associées</strong> du programme SII (Sciences de l'Ingénieur Industriel) pour la classe de STI2D, basé sur le Bulletin Officiel.</p>
 <hr>
 <h2>Les 7 Objectifs de Formation</h2>
