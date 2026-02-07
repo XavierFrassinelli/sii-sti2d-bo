@@ -339,10 +339,10 @@
   <div class="container">
     <div class="header-top">
       <div class="header-logos">
-        <img src="../assets/logos/2i2d.png" alt="2I2D logo" title="2I2D - Ingénierie, Innovation & Développement Durable" class="logo logo-1">
-        <img src="../assets/logos/i2d.png" alt="I2D logo" title="Ingénierie & Développement Durable" class="logo logo-2">
-        <img src="../assets/logos/it.png" alt="Innovation Technologique logo" title="Innovation Technologique" class="logo logo-3">
-        <img src="../assets/logos/logoVH.png" alt="Lycée Victor Hugo" title="Lycée Victor Hugo" class="logo logo-4">
+        <img src="assets/logos/2i2d.png" alt="2I2D logo" title="2I2D - Ingénierie, Innovation & Développement Durable" class="logo logo-1" data-path="assets/logos/2i2d.png">
+        <img src="assets/logos/i2d.png" alt="I2D logo" title="Ingénierie & Développement Durable" class="logo logo-2" data-path="assets/logos/i2d.png">
+        <img src="assets/logos/it.png" alt="Innovation Technologique logo" title="Innovation Technologique" class="logo logo-3" data-path="assets/logos/it.png">
+        <img src="assets/logos/logoVH.png" alt="Lycée Victor Hugo" title="Lycée Victor Hugo" class="logo logo-4" data-path="assets/logos/logoVH.png">
       </div>
       <div class="header-title">
         <h1>Programme SII — STI2D (BO)</h1>
@@ -352,12 +352,12 @@
       </div>
     </div>
     <nav>
-      <a href="../index.html" style="color:#fff;">📚 Accueil</a>
-      <a href="../objectifs/O1.html" style="color:#fff;">O1 - Caractériser</a>
-      <a href="../activites/TP_O1.html" style="color:#fff;">🔬 TP & Activités</a>
-      <a href="../fiches-eleves/Fiche_Analyse_Produit.html" style="color:#fff;">📋 Fiches Élèves</a>
-      <a href="../ressources/Ressources_Videos.html" style="color:#fff;">🎥 Ressources</a>
-      <a href="../ressources/Quiz_O1_O7.html" style="color:#fff;">📝 Quiz</a>
+      <a href="index.html" data-path="index.html" style="color:#fff;">📚 Accueil</a>
+      <a href="objectifs/O1.html" data-path="objectifs/O1.html" style="color:#fff;">O1 - Caractériser</a>
+      <a href="activites/TP_O1.html" data-path="activites/TP_O1.html" style="color:#fff;">🔬 TP & Activités</a>
+      <a href="fiches-eleves/Fiche_Analyse_Produit.html" data-path="fiches-eleves/Fiche_Analyse_Produit.html" style="color:#fff;">📋 Fiches Élèves</a>
+      <a href="ressources/Ressources_Videos.html" data-path="ressources/Ressources_Videos.html" style="color:#fff;">🎥 Ressources</a>
+      <a href="ressources/Quiz_O1_O7.html" data-path="ressources/Quiz_O1_O7.html" style="color:#fff;">📝 Quiz</a>
     </nav>
   </div>
 </header>
@@ -458,6 +458,22 @@ Voir le Bulletin Officiel pour les attendus détaillés du programme SII.</p>
         localStorage.setItem('site-theme', mode);
         updateButton();
       });
+    })();
+    
+    // Auto-adjust relative paths based on page depth
+    (function(){
+      const depth = window.location.pathname.split('/').length - 2;
+      if(depth > 1) {
+        const prefix = '../'.repeat(depth - 1);
+        // Fix images with data-path attribute
+        document.querySelectorAll('img[data-path]').forEach(img => {
+          img.src = prefix + img.getAttribute('data-path');
+        });
+        // Fix links with data-path attribute
+        document.querySelectorAll('a[data-path]').forEach(link => {
+          link.href = prefix + link.getAttribute('data-path');
+        });
+      }
     })();
   </script>
 </body>

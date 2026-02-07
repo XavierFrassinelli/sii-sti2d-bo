@@ -380,6 +380,22 @@
         updateButton();
       });
     })();
+    
+    // Auto-adjust relative paths based on page depth
+    (function(){
+      const depth = window.location.pathname.split('/').length - 2;
+      if(depth > 1) {
+        const prefix = '../'.repeat(depth - 1);
+        // Fix images with data-path attribute
+        document.querySelectorAll('img[data-path]').forEach(img => {
+          img.src = prefix + img.getAttribute('data-path');
+        });
+        // Fix links with data-path attribute
+        document.querySelectorAll('a[data-path]').forEach(link => {
+          link.href = prefix + link.getAttribute('data-path');
+        });
+      }
+    })();
   </script>
 </body>
 </html>
