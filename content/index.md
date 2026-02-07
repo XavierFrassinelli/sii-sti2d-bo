@@ -21,13 +21,19 @@ Repérer et analyser les éléments techniques d'un système, en identifier le f
 
 Proposer et concevoir des solutions techniques adaptées aux besoins identifiés.
 
+- [Concevoir une solution](/competences/concevoir.html)
+
 ### 3. Implanter
 
 Mettre en œuvre et réaliser les solutions techniques conçues.
 
+- [Implanter une solution](/competences/implanter.html)
+
 ### 4. Vérifier
 
 Valider et vérifier le bon fonctionnement des solutions réalisées.
+
+- [Vérifier une solution](/competences/verifier.html)
 
 ---
 
