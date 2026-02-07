@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 2I2D Logo -->
+  <circle cx="85" cy="50" r="35" fill="none" stroke="#00a86b" stroke-width="2"/>
+  <circle cx="85" cy="50" r="28" fill="none" stroke="#1e90ff" stroke-width="1.5"/>
+  <text x="50" y="65" font-size="32" font-weight="bold" fill="#00a86b">2I2D</text>
+  <text x="50" y="85" font-size="9" fill="#666">Ingénierie & Innovation</text>
+</svg>

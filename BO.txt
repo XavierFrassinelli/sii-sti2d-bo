@@ -1,0 +1,109 @@
+O1 - Caractériser des produits ou des constituants privilégiant un usage raisonné du point de vue développement durable.
+	CO1.1. Justifier les choix des structures matérielles et/ou logicielles d’un 
+produit, identifier les flux mis en œuvre dans une approche de 
+développement durable.
+CO1.2. Justifier le choix d’une solution selon des contraintes d’ergonomie 
+et de design.
+CO1.3. Justifier les solutions constructives d’un produit au regard des 
+performances environnementales et estimer leur impact sur 
+l’efficacité globale.
+
+O2 - Identifier les 
+éléments influents 
+du développement 
+d’un produit.
+CO2.1. Décoder le cahier des charges d’un produit, participer, si besoin, à 
+sa modification.
+CO2.2. Évaluer la compétitivité d’un produit d’un point de vue technique et 
+économique.
+
+O3 - Analyser
+l’organisation 
+fonctionnelle et
+structurelle d’un 
+produit.
+CO3.1. Identifier et caractériser les fonctions et les constituants d’un 
+produit ainsi que ses entrées/sorties 
+CO3.2. Identifier et caractériser l’agencement matériel et/ou logiciel d’un
+produit.
+CO3.3. Identifier et caractériser le fonctionnement temporel d’un produit
+ou d’un processus.
+CO3.4. Identifier et caractériser des solutions techniques.
+
+
+O4 - Communiquer 
+une idée, un 
+principe ou une 
+solution technique, 
+un projet, y compris 
+en langue étrangère.
+CO4.1. Décrire une idée, un principe, une solution, un projet en utilisant 
+des outils de représentation adaptés.
+CO4.2. Décrire le fonctionnement et/ou l’exploitation d’un produit en 
+utilisant l'outil de description le plus pertinent.
+CO4.3. Présenter de manière argumentée des démarches, des résultats, y 
+compris dans une langue étrangère.
+
+
+O5 – Imaginer 
+une solution, 
+répondre à un 
+besoin.
+CO5.1. S’impliquer dans une démarche de projet menée en groupe.
+CO5.2. Identifier et justifier un problème technique à partir de l’analyse globale 
+d’un produit (approche matière – énergie – information).
+CO5.3. Mettre en évidence les constituants d’un produit à partir des 
+diagrammes pertinents.
+CO5.4. Planifier un projet (diagramme de Gantt, chemin critique) en utilisant les 
+outils adaptés et en prenant en compte les données technicoéconomiques.
+CO5.5. Proposer des solutions à un problème technique identifié en participant 
+à des démarches de créativité, choisir et justifier la solution retenue.
+CO5.6. Participer à une étude de design d’un produit dans une démarche de 
+développement durable.
+CO5.7. Définir la structure matérielle, la constitution d’un produit en fonction des 
+caractéristiques technico-économiques et environnementales attendues.
+CO5.8. Concevoir
+
+
+O6 – Préparer 
+une simulation 
+et exploiter les 
+résultats pour 
+prédire un 
+fonctionnement, 
+valider une 
+performance ou 
+une solution.
+CO6.1. Expliquer des éléments d’une modélisation multiphysique proposée 
+relative au comportement de tout ou partie d’un produit.
+CO6.2. Identifier et régler des variables et des paramètres internes et externes 
+utiles à une simulation mobilisant une modélisation multiphysique.
+CO6.3. Évaluer un écart entre le comportement du réel et les résultats fournis 
+par le modèle en fonction des paramètres proposés, conclure sur la 
+validité du modèle.
+CO6.4. Choisir pour une fonction donnée, un modèle de comportement à partir 
+d’observations ou de mesures faites sur le produit.
+CO6.5. Interpréter les résultats d’une simulation et conclure sur la 
+performance de la solution.
+
+
+
+O7 – Expérimenter 
+et réaliser des 
+prototypes ou des 
+maquettes.
+
+CO7.1. Réaliser et valider un prototype ou une maquette obtenus en 
+réponse à tout ou partie du cahier des charges initial.
+CO7.2. Mettre en œuvre un scénario de validation devant intégrer un 
+protocole d’essais, de mesures et/ou d’observations sur le prototype 
+ou la maquette, interpréter les résultats et qualifier le produit.
+CO7.3. Expérimenter
+
+CO7.4. Réaliser et valider un prototype ou une maquette obtenus en 
+réponse à tout ou partie du cahier des charges initial.
+CO7.5. Mettre en œuvre un scénario de validation devant intégrer un 
+protocole d’essais, de mesures et/ou d’observations sur le 
+prototype ou la maquette, interpréter les résultats et qualifier le 
+produit.
+CO7.6. Expérimenter 
