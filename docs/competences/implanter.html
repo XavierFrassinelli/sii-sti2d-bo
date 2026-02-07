@@ -508,13 +508,31 @@
       const depth = window.location.pathname.split('/').length - 2;
       if(depth > 1) {
         const prefix = '../'.repeat(depth - 1);
+        
         // Fix images with data-path attribute
         document.querySelectorAll('img[data-path]').forEach(img => {
           img.src = prefix + img.getAttribute('data-path');
         });
+        
         // Fix links with data-path attribute
         document.querySelectorAll('a[data-path]').forEach(link => {
           link.href = prefix + link.getAttribute('data-path');
+        });
+        
+        // Fix ALL relative links without data-path (from markdown content)
+        document.querySelectorAll('a').forEach(link => {
+          const href = link.getAttribute('href');
+          if(href && !href.startsWith('http') && !href.startsWith('/') && !href.startsWith('#') && !link.getAttribute('data-path')) {
+            link.href = prefix + href;
+          }
+        });
+        
+        // Fix ALL images without data-path attribute
+        document.querySelectorAll('img').forEach(img => {
+          const src = img.getAttribute('src');
+          if(src && !src.startsWith('http') && !src.startsWith('/') && !img.getAttribute('data-path')) {
+            img.src = prefix + src;
+          }
         });
       }
     })();
