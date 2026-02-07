@@ -19,6 +19,7 @@
       --o5: #be185d;
       --o6: #92400e;
       --o7: #6b21a8;
+      --descripteur: var(--accent);
     }
     /* Light theme overrides */
     body.theme-light {
@@ -361,13 +362,13 @@
     }
     table td:first-child {
       font-weight: 600;
-      color: var(--primary);
+      color: var(--descripteur);
       background: rgba(11, 35, 64, 0.3);
       width: 20%;
     }
     body.theme-light table td:first-child {
       background: rgba(30, 64, 175, 0.08);
-      color: #0b2340;
+      color: var(--descripteur);
     }
     
     /* Responsive tables */
@@ -413,7 +414,7 @@
         left: 0.5rem;
         font-weight: 600;
         width: 25%;
-        color: var(--primary);
+        color: var(--descripteur);
       }
     }
     
